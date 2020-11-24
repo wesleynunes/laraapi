@@ -32,7 +32,17 @@ class CategoryController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function show($id)
+    {
+        if(!$category = $this->category->find($id))
+            return response()->json(['error' => 'Not found 404'], 404);
+        
+        return response()->json($category);
+    }
+
+
+
+    public function update(StoreUpdateCategoryFormRequest $request, $id)
     {
 
         if(!$category = $this->category->find($id))
@@ -43,5 +53,15 @@ class CategoryController extends Controller
         return response()->json($category);
     }
 
+
+    public function destroy($id)
+    {
+        if(!$category = $this->category->find($id))
+            return response()->json(['error' => 'Not found 404'], 404);
+
+        $category->delete();
+
+        return response()->json(['success' => true], 204);
+    }
 
 }

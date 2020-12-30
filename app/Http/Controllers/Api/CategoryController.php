@@ -41,7 +41,6 @@ class CategoryController extends Controller
     }
 
 
-
     public function update(StoreUpdateCategoryFormRequest $request, $id)
     {
 

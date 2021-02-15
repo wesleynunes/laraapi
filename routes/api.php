@@ -30,6 +30,7 @@
 // Route::put('categories/{id}','Api\CategoryController@update');
 // Route::delete('categories/{id}','Api\CategoryController@delete');
 
+Route::apiResource('products', 'Api\ProductController'); 
 Route::apiResource('categories', 'Api\CategoryController');
 
 

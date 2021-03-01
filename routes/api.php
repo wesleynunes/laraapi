@@ -32,7 +32,10 @@
 
 // Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function(){
 
+Route::post('auth', 'Auth\AuthApiController@authenticate');
+
 Route::group(['prefix' => 'v1', 'namespace' => 'Api\v1'], function(){
+
     Route::get('categories/{id}/products', 'CategoryController@products');
     Route::apiResource('categories', 'CategoryController');
 

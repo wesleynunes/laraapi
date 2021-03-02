@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -36,7 +36,7 @@ class CategoryController extends Controller
     {
         if(!$category = $this->category->find($id))
             return response()->json(['error' => 'Not found 404'], 404);
-        
+
         return response()->json($category);
     }
 
@@ -61,6 +61,20 @@ class CategoryController extends Controller
         $category->delete();
 
         return response()->json(['success' => true], 204);
+    }
+
+
+    public function products($id)
+    {
+        if(!$category = $this->category->find($id))
+        return response()->json(['error' => 'Not found 404'], 404);
+
+        $products = $category->products()->paginate(10);
+
+        return response()->json([
+            'category' => $category,
+            'products' => $products,
+        ]);
     }
 
 }

@@ -45,7 +45,7 @@ class CategoryController extends Controller
     {
 
         if(!$category = $this->category->find($id))
-            return response()->json(['error' => 'Not found 404'], 404);
+            return response()->json(['error' => 'Not found'], 404);
 
         $category->update($request->all());
 

@@ -15,5 +15,9 @@ class CategoriesTableSeeder extends Seeder
         Category::create([
             'name' => 'Api',
         ]);
+
+        Category::create([
+            'name' => 'teste',
+        ]);
     }
 }

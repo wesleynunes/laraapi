@@ -62,7 +62,8 @@ Route::group([
     'prefix' => 'v1', 
     'namespace' => 'Api\v1',
     // 'middleware' => 'jwt.auth'
-    'middleware' => 'auth:api'
+    // 'middleware' => ''
+    // 'middleware' => 'auth:api'
 ], function(){
 
     Route::get('categories/{id}/products', 'CategoryController@products');

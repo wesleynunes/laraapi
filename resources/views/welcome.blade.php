@@ -88,7 +88,7 @@
             <div class="content">
                 <div class="title m-b-md">
                     
-                    <admin-component></admin-component>
+                    <router-view></router-view>
                 </div>
 
                 <div class="links">

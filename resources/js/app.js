@@ -8,7 +8,7 @@ import store from './vuex/store'
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-Vue.component('app-component', require('./components/App').default);
+Vue.component('admin-component', require('./components/admin/AdminComponent').default);
 
 const app = new Vue({
     router,

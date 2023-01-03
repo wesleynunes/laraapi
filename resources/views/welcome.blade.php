@@ -87,8 +87,8 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    {{-- Laravel                 --}}
-                    <app-component />
+                    
+                    <admin-component></admin-component>
                 </div>
 
                 <div class="links">

@@ -1,6 +1,6 @@
 <template>
     <div>
-        Sou o template admin        
+         <router-view></router-view>    
     </div>
 </template>
 

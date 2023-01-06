@@ -26,27 +26,11 @@
     export default{
 
         created(){
-            this.loadCategories()
+            this.$store.dispatch('loadCategories')
         },
-        data(){
-            return{
-                categories: {
-                    data: []
-                },
-            }
-        },
-
-        methods:{
-            loadCategories(){
-                axios.get('/api/v1/categories')
-                    .then(response => {
-                        console.log(response)
-
-                        this.categories = response
-                    })
-                    .catch(errors => {
-                        console.log(errors)
-                    })
+        computed: {
+            categories (){
+                return this.$store.state.categories.items
             }
         }
     }

@@ -1908,7 +1908,13 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    totalCategories: function totalCategories() {
+      return this.$store.state.categories.items.data.length;
+    }
+  }
+});
 
 /***/ }),
 
@@ -1926,24 +1932,11 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
-    this.loadCategories();
+    this.$store.dispatch('loadCategories');
   },
-  data: function data() {
-    return {
-      categories: {
-        data: []
-      }
-    };
-  },
-  methods: {
-    loadCategories: function loadCategories() {
-      var _this = this;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/v1/categories').then(function (response) {
-        console.log(response);
-        _this.categories = response;
-      })["catch"](function (errors) {
-        console.log(errors);
-      });
+  computed: {
+    categories: function categories() {
+      return this.$store.state.categories.items;
     }
   }
 });
@@ -1976,7 +1969,7 @@ var render = function render() {
         name: "admin.categories"
       }
     }
-  }, [_vm._v("Categorias")])], 1)]), _vm._v(" "), _c("router-view")], 1);
+  }, [_vm._v("Categorias (" + _vm._s(_vm.totalCategories) + ")")])], 1)]), _vm._v(" "), _c("router-view")], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -54493,9 +54486,26 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  state: {},
-  mutations: {},
-  actions: {},
+  state: {
+    items: {
+      data: []
+    }
+  },
+  mutations: {
+    LOAD_CATEGORIES: function LOAD_CATEGORIES(state, categories) {
+      state.items = categories;
+    }
+  },
+  actions: {
+    loadCategories: function loadCategories(context) {
+      axios.get('/api/v1/categories').then(function (response) {
+        console.log(response);
+        context.commit('LOAD_CATEGORIES', response);
+      })["catch"](function (errors) {
+        console.log(errors);
+      });
+    }
+  },
   getters: {}
 });
 

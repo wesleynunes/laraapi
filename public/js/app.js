@@ -1927,7 +1927,25 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      name: ''
+    };
+  },
+  methods: {
+    submitForm: function submitForm() {
+      var _this = this;
+      this.$store.dispatch('storeCategory', {
+        name: this.name
+      }).then(function () {
+        return _this.$router.push({
+          name: 'admin.categories'
+        });
+      })["catch"]();
+    }
+  }
+});
 
 /***/ }),
 
@@ -2031,27 +2049,50 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm._m(0);
-};
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", [_c("h1", [_vm._v("Adicionar nova categoria")]), _vm._v(" "), _c("form", [_c("div", {
+  return _c("div", [_c("h1", [_vm._v("Adicionar nova categoria")]), _vm._v(" "), _c("form", {
+    staticClass: "form",
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.submitForm.apply(null, arguments);
+      }
+    }
+  }, [_c("div", {
     staticClass: "form-group"
   }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.name,
+      expression: "name"
+    }],
     staticClass: "form-control",
     attrs: {
       type: "text",
       placeholder: "Nome da Categoria"
+    },
+    domProps: {
+      value: _vm.name
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.name = $event.target.value;
+      }
     }
-  })]), _vm._v(" "), _c("div", {
+  })]), _vm._v(" "), _vm._m(0)])]);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "class form-group"
   }, [_c("button", {
     staticClass: "btn btn-primary",
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("Salvar")])])])]);
+  }, [_vm._v("Salvar")])]);
 }];
 render._withStripped = true;
 
@@ -55438,9 +55479,24 @@ __webpack_require__.r(__webpack_exports__);
       })["finally"](function () {
         return context.commit('PRELOADER', false);
       });
+    },
+    storeCategory: function storeCategory(context, params) {
+      context.commit('PRELOADER', true);
+      return new Promise(function (resolve, reject) {
+        axios.post('/api/v1/categories', params).then(function (response) {
+          return resolve();
+        })["catch"](function (errors) {
+          return reject(errors);
+        })["finally"](function () {
+          return context.commit('PRELOADER', false);
+        });
+      });
     }
-  },
-  getters: {}
+  }
+
+  // getters:{
+
+  // }
 });
 
 /***/ }),

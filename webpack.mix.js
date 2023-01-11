@@ -1,4 +1,4 @@
-+const mix = require('laravel-mix');
+const mix = require('laravel-mix');
 // const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 /*
@@ -13,8 +13,8 @@
  */
 
 mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css')
-   .browserSync('http://laraapi.dev.com/');
+   .sass('resources/sass/app.scss', 'public/css');
+   // .browserSync('http://laraapi.dev.com/');
 
 
 

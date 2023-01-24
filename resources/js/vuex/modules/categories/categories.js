@@ -27,6 +27,22 @@ export default{
                 .finally(() => context.commit('PRELOADER', false))
         },
 
+
+        loadCategory(context, id){
+
+            context.commit('PRELOADER', true)
+
+            return new Promise((resolve, reject) => {
+                axios.get(`/api/v1/categories/${id}`)
+                .then(response => resolve(response.data))
+                .catch(errors => reject(errors))
+                .finally(() => context.commit('PRELOADER', false))
+            })
+           
+        },
+
+
+
         storeCategory(context, params){
 
             context.commit('PRELOADER', true)
@@ -38,7 +54,20 @@ export default{
                 .finally(() => context.commit('PRELOADER', false))
             })
            
+        },
+
+        updateCategory (context, params){
+            context.commit('PRELOADER', true)
+
+            return new Promise((resolve, reject) => {
+                axios.put(`/api/v1/categories/${params.id}`, params)
+                .then(response => resolve())
+                .catch(errors => reject(errors))
+                .finally(() => context.commit('PRELOADER', false))
+            })
         }
+
+
     },
 
     // getters:{

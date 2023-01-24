@@ -2,33 +2,19 @@
     <div>
         <h1>Adicionar nova categoria</h1>
 
-        <form class="form" @submit.prevent="submitForm">
-            <div class="form-group">
-                <input type="text" v-model="name" class="form-control" placeholder="Nome da Categoria">
-            </div>
-            <div class="class form-group">
-                <button type="submit" class="btn btn-primary">Salvar</button>
-            </div>
-        </form>
-
+       <form-cat></form-cat>
+        
     </div>
 </template>
 
 <script>
-export default{
-    data(){
-        return {
-            name: ''
-        }
-    },
-    methods: {
-        submitForm(){
-            this.$store.dispatch('storeCategory', {name: this.name})
-                .then(() => this.$router.push({name: 'admin.categories'}))
-                .catch()
-        }
-    }
 
+import FormCategoryComponent from './partials/FormCategoryComponent.vue';
+
+export default{
+    components: {
+        formCat: FormCategoryComponent
+    }
 }
 </script>
 

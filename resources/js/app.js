@@ -5,6 +5,10 @@ window.Vue = require('vue');
 import Vue from 'vue';
 import router from './routes/routers'
 import store from './vuex/store'
+import Snotify  from 'vue-snotify';
+
+// Vue.use(Snotify)
+Vue.use(Snotify, {toast: {showProgressBar: false}})
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 

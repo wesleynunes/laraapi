@@ -9,9 +9,6 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
 
-          <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-
         <meta name="csrf-token" content="{{ csrf_token()}}">
         <link rel="stylesheet" href="{{mix('css/app.css')}}">
 
@@ -55,6 +52,8 @@
 
             <div class="content">
                 <div class="title m-b-md">
+
+                    <vue-snofifly></vue-snofifly>
 
                     <preloader-component></preloader-component>
                     

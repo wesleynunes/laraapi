@@ -11,6 +11,7 @@
 
         <meta name="csrf-token" content="{{ csrf_token()}}">
         <link rel="stylesheet" href="{{mix('css/app.css')}}">
+        
 
         <!-- Styles -->
         <style>
@@ -53,7 +54,7 @@
             <div class="content">
                 <div class="title m-b-md">
 
-                    <vue-snofifly></vue-snofifly>
+                    <vue-snotify></vue-snotify>
 
                     <preloader-component></preloader-component>
                     

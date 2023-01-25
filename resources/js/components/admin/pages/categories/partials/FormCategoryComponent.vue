@@ -1,7 +1,8 @@
 <template>
     <div>
         <form class="form" @submit.prevent="onSubmit">
-            <div class="form-group">
+            <div :class="['form-group', {'has-error': errors.name}]">
+                <div v-if="errors.name" > {{ errors.name[0] }} </div>
                 <input type="text" v-model="category.name" class="form-control" placeholder="Nome da Categoria">
             </div>
             <div class="class form-group">
@@ -33,13 +34,28 @@
             }
         },
 
+        data (){
+            return {
+                errors: {}
+            }
+        },
+
         methods: {
             onSubmit(){
                 const action = this.updating ? 'updateCategory' : 'storeCategory'
 
                 this.$store.dispatch(action, this.category)
-                    .then(() => this.$router.push({name: 'admin.categories'}))
-                    .catch()
+                    .then(() => {
+                        this.$snotify.success('Sucesso ao cadastrar')                        
+
+                        this.$router.push({name: 'admin.categories'})
+                    })
+                    .catch( error => {
+                        this.$snotify.error('Algo Errado', 'Error')  
+                        console.log('FormCategoryComponent')
+                        console.log(error.response.data.errors)
+                        this.errors = error.response.data.errors        
+                    })
             }
         }
     }
@@ -47,5 +63,7 @@
 
 
 <style scoped>
+.has-error{color: red;}
+.has-error input{border: 1px solid red;}
 
 </style>

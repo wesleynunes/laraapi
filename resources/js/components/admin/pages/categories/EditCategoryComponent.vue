@@ -11,7 +11,7 @@
 
 <script>
 
-    import FormCategoryComponent from './partials/FormCategoryComponent.vue';
+    import FormCategoryComponent from './partials/FormCategoryComponent.vue'
 
     export default{
         props:{
@@ -21,16 +21,26 @@
         },
 
         created(){
-            this.$store.dispatch('loadCategory', this.id)
-                        .then(response => this.category = response)
-                        .catch(error => {
-                            console.log(error)
-                        })
+           this.loadCategory()
         },
 
         data(){
             return{
                 category: {}
+            }
+        },
+
+        methods:{
+            loadCategory(){
+                this.$store.dispatch('loadCategory', this.id)
+                        .then(response => this.category = response)
+                        .catch(error => {
+                            this.$snotify.error('Categoria não encontrada', '404')
+
+                            this.$route.push({name: 'admin.categories'})
+
+                            console.log(error)
+                        })
             }
         },
         

@@ -1951,11 +1951,45 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
-    this.$store.dispatch('loadCategories');
+    this.loadCategories();
   },
   computed: {
     categories: function categories() {
       return this.$store.state.categories.items;
+    }
+  },
+  methods: {
+    loadCategories: function loadCategories() {
+      this.$store.dispatch('loadCategories');
+    },
+    confirmDestroy: function confirmDestroy(category) {
+      var _this = this;
+      this.$snotify.error("Deseja realmente deletar a categoria: ".concat(category.name), 'Deletar?', {
+        timout: 10000,
+        showProgressBar: true,
+        closeOnClick: true,
+        buttons: [{
+          text: 'Não',
+          action: function action() {
+            return console.log('Não deletou...');
+          }
+        }, {
+          text: 'Não',
+          action: function action() {
+            return _this.destroy(category);
+          }
+        }]
+      });
+    },
+    destroy: function destroy(category) {
+      var _this2 = this;
+      this.$store.dispatch('destroyCategory', category.id).then(function () {
+        _this2.$snotify.success("Sucesso ao deletar a categoria: ".concat(category.name));
+        _this2.loadCategories();
+      })["catch"](function (error) {
+        console.log(error);
+        _this2.$snotify.error('Error ao deletar a categoria', 'Error');
+      });
     }
   }
 });
@@ -2184,7 +2218,18 @@ var render = function render() {
           }
         }
       }
-    }, [_vm._v("\n                        Editar\n                    ")])], 1)]);
+    }, [_vm._v("\n                        Editar\n                    ")]), _vm._v(" "), _c("a", {
+      staticClass: "btn btn-danger",
+      attrs: {
+        href: "#"
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.confirmDestroy(category);
+        }
+      }
+    }, [_vm._v("\n                        Remover\n                    ")])], 1)]);
   }), 0)])], 1);
 };
 var staticRenderFns = [function () {
@@ -2192,7 +2237,7 @@ var staticRenderFns = [function () {
     _c = _vm._self._c;
   return _c("thead", [_c("tr", [_c("th", [_vm._v("ID")]), _vm._v(" "), _c("th", [_vm._v("NOME")]), _vm._v(" "), _c("th", {
     attrs: {
-      width: "100"
+      width: "200"
     }
   }, [_vm._v("AÇÕES")])])]);
 }];
@@ -57318,6 +57363,17 @@ __webpack_require__.r(__webpack_exports__);
         })["finally"](function () {
           return context.commit('PRELOADER', false);
         });
+      });
+    },
+    destroyCategory: function destroyCategory(context, id) {
+      context.commit('PRELOADER', true);
+      return new Promise(function (resolve, reject) {
+        axios["delete"]("/api/v1/categories/".concat(id)).then(function (response) {
+          return resolve();
+        })["catch"](function (errors) {
+          return reject(errors);
+        });
+        // .finally(() => context.commit('PRELOADER', false))
       });
     }
   }

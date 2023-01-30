@@ -42,7 +42,6 @@ export default{
         },
 
 
-
         storeCategory(context, params){
 
             context.commit('PRELOADER', true)
@@ -65,8 +64,18 @@ export default{
                 .catch(errors => reject(errors))
                 .finally(() => context.commit('PRELOADER', false))
             })
-        }
+        },
+        
+        destroyCategory(context, id){
+            context.commit('PRELOADER', true)
 
+            return new Promise((resolve, reject) => {
+                axios.delete(`/api/v1/categories/${id}`)
+                .then(response => resolve())
+                .catch(errors => reject(errors))
+                // .finally(() => context.commit('PRELOADER', false))
+            })
+        }
 
     },
 

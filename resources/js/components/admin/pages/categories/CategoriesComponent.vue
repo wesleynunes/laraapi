@@ -59,7 +59,7 @@
                 closeOnClick: true,
                 buttons:[
                     {text: 'Não', action: () => console.log('Não deletou...')},
-                    {text: 'Não', action: () => this.destroy(category)}
+                    {text: 'Sim', action: () => this.destroy(category)}
                 ]
               })   
             },

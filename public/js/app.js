@@ -1974,7 +1974,7 @@ __webpack_require__.r(__webpack_exports__);
             return console.log('Não deletou...');
           }
         }, {
-          text: 'Não',
+          text: 'Sim',
           action: function action() {
             return _this.destroy(category);
           }
@@ -6774,7 +6774,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, "\n.has-error[data-v-144c5eaa]{color: red;}\n.has-error input[data-v-144c5eaa]{border: 1px solid red;}\n\n", ""]);
+exports.push([module.i, "\n.has-error[data-v-144c5eaa]{color: red;}\n.has-error input[data-v-144c5eaa]{border: 1px solid red;}\r\n\r\n", ""]);
 
 // exports
 
@@ -6793,7 +6793,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.preloader[data-v-5e990e98]{\n    /* background: #000; */\n    position: absolute;\n    z-index: 9999;\n    opacity: .5;\n    width: 100;\n    height: 100;\n    margin: 0;\n    text-align: center;\n    padding: 5%;\n}\n.preloader img[data-v-5e990e98]{\n    max-width: 100px;\n}\n", ""]);
+exports.push([module.i, "\n.preloader[data-v-5e990e98]{\r\n    /* background: #000; */\r\n    position: absolute;\r\n    z-index: 9999;\r\n    opacity: .5;\r\n    width: 100;\r\n    height: 100;\r\n    margin: 0;\r\n    text-align: center;\r\n    padding: 5%;\n}\n.preloader img[data-v-5e990e98]{\r\n    max-width: 100px;\n}\r\n", ""]);
 
 // exports
 

@@ -2,7 +2,14 @@
     <div>
         <h1>Listagem das categorias</h1>
 
-        <router-link :to="{name: 'admin.categories.create'}" class="btn btn-success">Cadastrar</router-link>
+        <div class="row">
+            <div class="col">
+                <router-link :to="{name: 'admin.categories.create'}" class="btn btn-success">Cadastrar</router-link>
+            </div>
+            <div class="col">
+                <search></search>
+            </div>
+        </div>       
 
         <table class="table table-dark">
             <thead>
@@ -33,11 +40,18 @@
 <script>
 
     import axios from 'axios'
+    import SearchCategoryComponent from './partials/SearchCategoryComponent.vue'
 
     export default{
 
         created(){
             this.loadCategories()
+        },
+
+        data(){
+            return{
+                name: '',
+            }
         },
 
         computed: {
@@ -49,7 +63,7 @@
         methods: {
 
             loadCategories(){
-                this.$store.dispatch('loadCategories')
+                this.$store.dispatch('loadCategories', {name: this.name})
             },
 
             confirmDestroy(category){
@@ -76,6 +90,10 @@
                         })
             }  
         },
+
+        components:{
+            search: SearchCategoryComponent
+        }
     }
 
 </script>

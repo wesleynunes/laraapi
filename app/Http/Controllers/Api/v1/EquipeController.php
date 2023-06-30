@@ -14,7 +14,9 @@ class EquipeController extends Controller
     public function __construct(Equipe $equipe)
     {
         $this->equipe = $equipe;
-    }
+        // $this->middleware('auth:api');
+        // $this->middleware('jwt.auth');
+    } 
 
     /**
      * Display a listing of the resource.
